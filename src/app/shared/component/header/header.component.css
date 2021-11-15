@@ -1,0 +1,10 @@
+.container-header{
+    padding: 20px;
+    background: #30B4BA;
+}
+.titulo-header {
+    margin: auto;
+    font-size: 45px;
+    color:white;
+    text-align: center;
+}

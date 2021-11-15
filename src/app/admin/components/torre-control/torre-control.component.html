@@ -1,0 +1,97 @@
+<div class="container-filtros" *ngIf="aerolineas">
+
+  <span style="margin-left: 10px;">
+    <h4>AEROLINEA: </h4>
+    <mat-form-field appearance="fill">
+      <mat-label>AEROLINEA</mat-label>
+      <mat-select [(value)]="selectedAirline">
+        <mat-option [value]="allaerolinea" (click)="getIndexAirline(-1)" selected>TODAS LAS AEROLINEAS</mat-option>
+        <mat-option [value]="airline.aerolineaVUELO" *ngFor="let airline of aerolineas; let i = index"
+          (click)="getIndexAirline(i)">
+          {{ airline.aerolineaVUELO | uppercase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+  <span style="margin-left: 50px;">
+    <h4>FECHA: </h4>
+    <mat-form-field appearance="fill">
+      <mat-label>FECHA</mat-label>
+      <mat-select [(value)]="selectedDate">
+        <mat-option [value]="itemDate.fecha" *ngFor="let itemDate of fechasAterrizaje; let j = index"
+          (click)="getIndexDate(j)">
+          {{ itemDate.mes }} - {{itemDate.anio}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+  <span style="margin-left: 50px;">
+    <h2> <br> Cantidad de Datos: {{longitud}}</h2>
+  </span>
+
+</div>
+
+<div class="container-table" style="height: 280px;">
+
+  <table mat-table [dataSource]="aeropuertoView">
+
+    <ng-container matColumnDef="aterrizajeID">
+      <th mat-header-cell *matHeaderCellDef> ID<br>TorreControl </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.aterrizajeID}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comunicacionDATE">
+      <th mat-header-cell *matHeaderCellDef> FECHA Y HORA<br>COMUNICACION </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.comunicacionDATE | date: 'medium'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="aterrizajeDATE">
+      <th mat-header-cell *matHeaderCellDef> FECHA Y HORA<br>ATERRIZAJE </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.aterrizajeDATE | date: 'medium'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroVUELO">
+      <th mat-header-cell *matHeaderCellDef> NUMERO<br>DE VUELO </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.numeroVUELO}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="zonaAterrizaje">
+      <th mat-header-cell *matHeaderCellDef> ZONA DE ATERRIZAJE<br>BAHIA - PISTA </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.zonaAterrizaje}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="idunicoAVION">
+      <th mat-header-cell *matHeaderCellDef> ID UNICO<br>DE AVION </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.idunicoAVION}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lugarOrigen">
+      <th mat-header-cell *matHeaderCellDef> LUGAR DE ORIGEN<br>PAIS/CIUDAD </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.lugarOrigen}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="aerolineaVUELO">
+      <th mat-header-cell *matHeaderCellDef> AEROLINEA </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.aerolineaVUELO}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColums"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColums;"></tr>
+  </table>
+</div>
+
+<div class="container-buttons">
+  <span class="upload-file">
+    <input type="file" accept=".csv" (change)="selectFile($event)">
+
+    <button mat-raised-button color="warn" style="margin-left: 10px;" [disabled]="!selectedFiles"
+      (click)="upload($event.target.file)">
+      UPLOAD
+    </button>
+  </span>
+  <span>
+    <button class="boton" mat-raised-button routerLink="/admin">REGRESAR</button>
+  </span>
+</div>

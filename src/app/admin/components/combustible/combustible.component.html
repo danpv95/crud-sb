@@ -1,0 +1,85 @@
+<div class="container-filtros" *ngIf="aerolineas">
+  
+  <span style="margin-left: 10px;">
+    <h4>AEROLINEA: {{selectedAirline}}</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>AEROLINEA</mat-label>
+      <mat-select [(value)]="selectedAirline">
+        <mat-option [value]="airline.aerolineaVUELO" *ngFor="let airline of aerolineas; let i = index"
+          (click)="getIndexAirline(i)">
+          {{ airline.aerolineaVUELO | uppercase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+  <span style="margin-left: 50px;">
+    <h4>FECHA: {{selectedDate}}</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>FECHA</mat-label>
+      <mat-select [(value)]="selectedDate">
+        <mat-option [value]="itemDate.fecha" *ngFor="let itemDate of fechasAterrizaje; let j = index"
+          (click)="getIndexDate(j)">
+          {{ itemDate.mes }} - {{itemDate.anio}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+</div>
+
+<div class="container-table" style="border: 2px solid rgb(47, 0, 255); border-radius: 5px;">
+
+  <table mat-table [dataSource]="aeropuertoView">
+
+    <ng-container matColumnDef="aterrizajeID">
+      <th mat-header-cell *matHeaderCellDef> ID<br>TorreControl </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.aterrizajeID}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comunicacionDATE">
+      <th mat-header-cell *matHeaderCellDef> FECHA Y HORA<br>COMUNICACION </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.comunicacionDATE | date: 'medium'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="aterrizajeDATE">
+      <th mat-header-cell *matHeaderCellDef> FECHA Y HORA<br>ATERRIZAJE </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.aterrizajeDATE | date: 'medium'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroVUELO">
+      <th mat-header-cell *matHeaderCellDef> NUMERO<br>DE VUELO </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.numeroVUELO}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="zonaAterrizaje">
+      <th mat-header-cell *matHeaderCellDef> ZONA DE ATERRIZAJE<br>BAHIA - PISTA </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.zonaAterrizaje}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="idunicoAVION">
+      <th mat-header-cell *matHeaderCellDef> ID UNICO<br>DE AVION </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.idunicoAVION}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lugarOrigen">
+      <th mat-header-cell *matHeaderCellDef> LUGAR DE ORIGEN<br>PAIS/CIUDAD </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.lugarOrigen}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="aerolineaVUELO">
+      <th mat-header-cell *matHeaderCellDef> AEROLINEA </th>
+      <td mat-cell *matCellDef="let aeropuerto"> {{aeropuerto.aerolineaVUELO}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumsAeropuerto"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumsAeropuerto;"></tr>
+  </table>
+</div>
+
+
+
+<div class="container-buttons">
+  <button class="boton" mat-raised-button routerLink="/admin/combustible/gen">REPORTE</button>
+  <button class="boton" mat-raised-button routerLink="/admin">REGRESAR</button>
+</div>

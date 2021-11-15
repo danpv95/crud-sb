@@ -1,0 +1,76 @@
+<div class="container-filtros" *ngIf="aerolineas">
+
+  <span style="margin-left: 10px;">
+    <h4>AEROLINEA: </h4>
+    <mat-form-field appearance="fill">
+      <mat-label>AEROLINEA</mat-label>
+      <mat-select [(value)]="selectedAirline">
+        <mat-option [value]="airline.aerolineaVUELO" *ngFor="let airline of aerolineas; let i = index"
+          (click)="getIndexAirline(i)">
+          {{ airline.aerolineaVUELO | uppercase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+  <span style="margin-left: 50px;">
+    <h4>FECHA: </h4>
+    <mat-form-field appearance="fill">
+      <mat-label>FECHA</mat-label>
+      <mat-select [(value)]="selectedDate">
+        <mat-option [value]="itemDate.fecha" *ngFor="let itemDate of fechasAterrizaje; let j = index"
+          (click)="getIndexDate(j)">
+          {{ itemDate.mes }} - {{itemDate.anio}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+
+</div>
+
+<div class="container-table" style="height: 280px;">
+
+  <table mat-table [dataSource]="viewData">
+
+    <ng-container matColumnDef="vueloid">
+      <th mat-header-cell *matHeaderCellDef> ID<br>VUELO </th>
+      <td mat-cell *matCellDef="let item"> {{item.vueloid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numerovuelo">
+      <th mat-header-cell *matHeaderCellDef> NUMERO<br>DE VUELO </th>
+      <td mat-cell *matCellDef="let item"> # {{item.numerovuelo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="idunicoavion">
+      <th mat-header-cell *matHeaderCellDef> ID UNICO<br>DE AVION </th>
+      <td mat-cell *matCellDef="let item"> {{item.idunicoavion }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="pistaautorizada">
+      <th mat-header-cell *matHeaderCellDef> PISTA<br>AUTORIZADA </th>
+      <td mat-cell *matCellDef="let item"> {{item.pistaautorizada}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sizeavion">
+      <th mat-header-cell *matHeaderCellDef> TAMAÑO<br>DE AVION</th>
+      <td mat-cell *matCellDef="let item"> {{item.sizeavion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="modalidadvuelo">
+      <th mat-header-cell *matHeaderCellDef> MODALIDAD<br>DE VUELO </th>
+      <td mat-cell *matCellDef="let item"> {{item.modalidadvuelo}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColums"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColums;"></tr>
+  </table>
+</div>
+
+
+<div class="container-buttons">
+  <button class="boton" mat-raised-button routerLink="/admin/liquidacion/gen" 
+  (click)="calculoLiquidacion()">
+  GENERAR LIQUIDACION</button>
+  <button class="boton" mat-raised-button routerLink="/admin">REGRESAR</button>
+</div>

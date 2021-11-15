@@ -1,0 +1,16 @@
+<section class="about-us">
+  <div class="inner-container" style="display: table; margin: 0 auto;">
+    <h1>INICIO DE SESION</h1>
+
+    <mat-form-field
+      style="display: table; margin: 0 auto; border-radius:15px; border: 3px solid #30B4BA; padding: 20px;">
+      <mat-label>Id de usuario</mat-label>
+      <input matInput type="text" [(ngModel)]="value">
+    </mat-form-field>
+
+    <div class="button-group" style="margin-top: 20px;">
+      <button mat-raised-button class="boton" (click)="validarUsuario(value)">SUBMIT</button>
+    </div>
+
+  </div>
+</section>

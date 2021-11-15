@@ -1,0 +1,96 @@
+<h3 style="margin-left: 50px;">FORMULARIO DE RECARGA DE COMBUSTIBLE</h3>
+
+<form [formGroup]="form" (ngSubmit)="saveProduct($event)" class="formulario">
+
+  <div class="container-formulario">
+    <div class="col-4 q-pr-md">
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>ID encargado recarga</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Fecha de recarga</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Hora de recarga</mat-label>
+        <input matInput type="datetime">
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container-formulario">
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Aerolínea</mat-label>
+        <input matInput formControlName="aerolineavuelo">
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>ID unico internacional del avion</mat-label>
+        <input matInput formControlName="idunicoavion">
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Numero de vuelo</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="container-formulario">
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Tamaño del avion</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Pais de origen</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Ciudad de origen</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+  </div>
+  <hr>
+  <div class="container-formulario">
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Tipo de combustible</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Cantidad de combustible</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <button routerLink="exit" class="boton" style="margin-left:123px;" mat-raised-button color="blue">Cargar</button>
+    </div>
+  </div>
+
+</form>

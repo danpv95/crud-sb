@@ -1,0 +1,28 @@
+.about-us {
+  background:
+    url('https://img.freepik.com/vector-gratis/ruta-ruta-linea-avion-punto-inicio-trazo-linea-trazos_166001-133.jpg?size=626&ext=jpg') no-repeat left;
+  background-size: 55%;
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+.inner-container {
+  width: 30%;
+  float: right;
+  background-color: whitesmoke;
+  padding: 100px;
+  border-radius: 15px;
+}
+
+.inner-container h1 {
+  color: #30B4BA;
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.inner-container .button-group{
+  display:flex;
+  justify-content: space-around;
+}
